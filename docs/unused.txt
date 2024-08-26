@@ -1,0 +1,1 @@
+.. autofunction:: probitlcm.gino.atestfunc

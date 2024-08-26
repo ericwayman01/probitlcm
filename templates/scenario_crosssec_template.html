@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report for scenario</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+  	border-collapse: collapse;
+}
+th, td {
+  	padding: 7px;
+}
+th {
+	background-color: #FDDF95;
+}
+</style>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head>
+<body>
+<div id="content">
+<h2>Overall values</h2>
+<h3>Beta-related</h3>
+
+<p>Matrix of \(\text{MAE}(\widehat{\beta_{hj}}^{(1:R)}, \beta_{hj}) = \frac{1}{R} \sum_{r=1}^{R} \text{AE}(\widehat{\beta_{hj}}^{(r)}, \beta_{hj})\)</p>
+
+{{ results_dict["mae_beta"] }}
+
+<p>Average of the entries of the above matrix: {{ results_dict["avg_of_mae_beta"] }}</p>
+
+<h3>Delta-related</h3>
+
+<p>Matrix of \(\frac{1}{R} \sum_{r=1}^{R} \left|\widehat{\delta_{hj}}^{(r)} - \delta_{hj}\right|\) (the entries of which have no clear convergence properties).</p>
+
+{{ results_dict["mae_delta"] }}
+
+<p>Average of the entries of the above matrix: {{ results_dict["avg_of_mae_delta"] }}</p>
+
+<h3>Beta and delta percentages broken down into 0 and 1 matches</h3>
+
+<p>
+Average of average of AE for delta, subset 0: {{ beta_delta_subsets["avg_of_avg_of_ae_delta_0"] }}
+</p>
+
+<p>
+Average of average of AE for delta, subset 1: {{ beta_delta_subsets["avg_of_avg_of_ae_delta_1"] }}
+</p>
+
+<p>
+Average beta MAD for datagen delta equals 0: {{ beta_delta_subsets["avg_of_avg_of_ae_beta_0"] }}
+</p>
+
+<p>
+Average beta MAD for datagen delta equals 1: {{ beta_delta_subsets["avg_of_avg_of_ae_beta_1"] }}
+</p>
+
+
+<h3>Theta-related</h3>
+
+{{ results_dict_theta["avg_theta_stat"] }}
+
+<p>Average of the entries of the above matrix: {{ results_dict_theta["avg_of_avg_theta_stat"] }}</p>
+
+<h3>Lambda related</h3>
+
+{{ results_dict_lambda["mae_lambda"] }}
+
+<p>Average of the entries of the above matrix: {{ results_dict_lambda["avg_of_mae_lambda"] }}</p>
+
+<h3>Rmat-related</h3>
+
+{{ results_dict_Rmat["mae_Rmat"] }}
+
+<p>Average of the entries of the above matrix: {{ results_dict_Rmat["avg_of_mae_Rmat"] }}</p>
+
+<h3>Gammas-related</h3>
+
+{% for key, value in gamma_avg_of_mae_dict.items() %}
+<p>Gamma index: {{key}}</p>
+Statistic:
+
+{{value}}
+
+{% endfor %}
+
+<p>Average of the entries of the above: {{ gamma_avg_of_avg_of_mae }}</p>
+
+<h3>Metric value</h3>
+
+Average of metric values: {{ avg_of_metric_values }}
+
+(above should be empty)
+
+<h3>Alpha-count-related</h3>
+
+Average of class recovery metrics:
+
+{{ avg_of_class_recovery_metric }}
+
+</div>
+</body>
+</html>

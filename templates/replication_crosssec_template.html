@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report for replication number {{ vars_dict.replicnum }}</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+  	border-collapse: collapse;
+}
+th, td {
+  	padding: 7px;
+}
+th {
+	background-color: #FDDF95;
+}
+</style>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head>
+<body>
+<div id="content">
+<h2>True beta and delta</h2>
+<h3>Beta</h3>
+
+{{ beta_dict["datagen_beta"] }}
+
+<h3>Delta</h3>
+
+{{ delta_dict["datagen_delta"] }}
+
+<h2>Beta recovery</h2>
+
+<h3>Beta empirical quantile information</h3>
+
+<p>The following table shows a 1 if the corresponding \(\beta_{hj}\) falls into the 5%-95% interval of the empirical cdf, and 0 if it does not.</p>
+
+{{ beta_dict["beta_recov_table"] }}
+
+<p>The above table shows {{ beta_dict["present_count"] }} out of {{ beta_dict["beta_recov_size"] }}, or {{ beta_dict["beta_recov_count"] / beta_dict["beta_recov_size"] }} percent of the intervals contain the true (data generating) parameter.</p>
+
+<p>The following table shows the matrix of \(\text{AE}(\widehat{\beta_{hj}}^{(r)}, \beta_{hj}) := \left|\widehat{\beta_{hj}}^{(r)} - \beta_{hj}\right|\) values.</p>
+
+{{ beta_dict["betahat_avg_error"] }}
+
+<p>(?) MAYBE LATER: ADD AVERAGE VALUE FOR THIS REPLICATION (?)</p>
+
+<h2>Delta recovery</h2>
+
+<h3>Delta num matches table</h3>
+
+<p>The following table shows the number of draws in the post-burn in phase for which delta was the correct delta.</p>
+
+{{ delta_dict["num_matches_table"] }}
+
+<p>The following table shows the matrix of \(\left|\widehat{\delta_{hj}}^{(r)} - \delta_{hj}\right|\) values, where \(\widehat{\delta_{hj}}^{(r)} = I\left(\frac{1}{S} \sum_{s=1}^S \delta^{(r, s)} > 0.5\right)\) (the entries of which have confusing convergence properties).</p>
+
+{{ delta_dict["deltahat_avg_error"] }}
+
+<h3>Beta and delta percentages broken down into 0 and 1 matches</h3>
+
+<p>
+Delta average error values, subset of equals 0: {{ delta_dict["delta_avg_of_ae_0"] }}
+</p>
+
+<p>
+Delta average error values, subset of equals 1: {{ delta_dict["delta_avg_of_ae_1"] }}
+</p>
+
+<p>
+Beta average error values, subset of equals 0: {{ beta_dict["beta_avg_of_ae_0"] }}
+</p>
+
+<p>
+Beta average error values, subset of equals 1: {{ beta_dict["beta_avg_of_ae_1"] }}
+</p>
+
+
+<h2>Class-conditional item-response probabilities</h2>
+
+{% for theta_mat_stat in theta_mat_stats_list %}
+<div>
+<p>{{ loop.index }}</p>
+{{ theta_mat_stat }}
+</div>
+{% endfor %}
+
+<h2>Lambda-related</h2>
+
+<p>Lambda stats:</p>
+
+{{ lambda_stat }}
+
+<h2>Rmat-related</h2>
+
+{{ Rmat_stat }}
+
+<h2>Gamma-related</h2>
+
+{% for key, value in gamma_stats_dict.items() %}
+<p>Gamma index: {{key}}</p>
+
+Statistic:
+
+{{value}}
+
+{% endfor %}
+
+<h2>Alpha-count-related</h2>
+
+{{ class_report_table }}
+
+Class recovery metric:
+
+{{ class_recovery_metric }}
+
+</div>
+</body>
+</html>

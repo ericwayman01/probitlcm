@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report for chain</title>
+<style>
+table, th, td {
+	border: 1px solid black;
+  	border-collapse: collapse;
+}
+th, td {
+  	padding: 7px;
+}
+th {
+	background-color: #FDDF95;
+}
+</style>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></head>
+<body>
+<div id="content">
+<h2>Estimates of expected values of parameters</h2>
+
+<h3>Beta</h3>
+
+Note that any cell containing a number whose first two digits to the right of the decimal place are zeros is represented as an empty cell.
+
+{{ param_estimates_dict["beta"] }}
+
+<h3>Delta: average of draws post burn-in</h3>
+
+{{ param_estimates_dict["delta"] }}
+
+<h3>Class-conditional item-response probabilities</h3>
+
+{% for theta_j_hat in theta_j_hats_list %}
+<div>
+<p>{{ loop.index }}</p>
+{{ theta_j_hat }}
+</div>
+{% endfor %}
+
+<h3>Lambda</h3>
+
+{{ param_estimates_dict["lambda"] }}
+
+<h3>Rmat</h3>
+
+{{ param_estimates_dict["Rmat"] }}
+
+<h3>Gamma-related</h3>
+
+{% for key, value in gamma_estimates_dict.items() %}
+<p>Gamma index: {{key}}</p>
+
+Statistic:
+
+{{value}}
+
+{% endfor %}
+
+</div>
+</body>
+</html>

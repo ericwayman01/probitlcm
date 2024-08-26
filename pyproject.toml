@@ -1,0 +1,43 @@
+[build-system]
+requires = ["scikit-build-core", "pybind11", "numpy"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "probitlcm"
+version = "0.0.1"
+description="Implements models developed by Wayman et al. in the article http://arxiv.org/abs/2408.13143"
+readme="README.rst"
+authors = [
+  { name = "Eric Alan Wayman", email = "ewayman2@illinois.edu" },
+]
+requires-python = ">=3.9"
+classifiers = [
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "pybind11",
+    "numpy<=1.26.4",
+    "scipy",
+    "pandas",
+    "matplotlib",
+    "scikit_learn",
+    "jinja2",
+    "toml; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+docs = [
+  "sphinx >=4.0",
+  "sphinx-copybutton",
+  "sphinx-autodoc-typehints",
+  "furo"
+]
+
+[project.urls]
+Homepage = "https://github.com/ericwayman01/probitlcm"

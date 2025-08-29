@@ -1,6 +1,6 @@
 # This file is part of "probitlcm" which is released under GPL v3.
 #
-# Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+# Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
 #
 # This program is FLO (free/libre/open) software: you can redistribute
 # it and/or modify it under the terms of the GNU General Public License
@@ -15,20 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import argparse
+import itertools
+import json
 import pathlib
 import shutil
-import argparse
 import subprocess
-import json
-import itertools
-
 import time
-
-import sys
-if sys.version_info[1] < 11:
-    import toml
-else:
-    import tomllib as toml
 
 from probitlcm.scenario_launch import scenario_launch_setup
 from probitlcm.scenario_launch import scenario_launch_laptop

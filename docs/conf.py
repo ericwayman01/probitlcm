@@ -1,7 +1,7 @@
 # content of docs/conf.py
 
 project = "probitlcm"
-copyright = "2022-2024 Eric Alan Wayman"
+copyright = "2022-2025 Eric Alan Wayman"
 source_suffix = [".rst"]
 html_theme = "furo"
 

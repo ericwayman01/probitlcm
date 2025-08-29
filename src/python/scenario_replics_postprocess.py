@@ -1,6 +1,6 @@
 # This file is part of "probitlcm" which is released under GPL v3.
 #
-# Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+# Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
 #
 # This program is FLO (free/libre/open) software: you can redistribute
 # it and/or modify it under the terms of the GNU General Public License
@@ -18,13 +18,7 @@
 ## standard library
 import argparse
 import pathlib
-
-## other modules
-import sys
-if sys.version_info[1] < 11:
-    import toml
-else:
-    import tomllib as toml
+import tomllib
 
 ## my modules
 from probitlcm import scenario_report_overall
@@ -53,12 +47,14 @@ if __name__ == "__main__":
                         required=True)
     parser.add_argument("--sim_info_dir_name", required=True)
     parser.add_argument("--scenarionumber", required=True)
+    parser.add_argument("--statistic_type",
+                        choices = ["mean", "median"],required=True)
     args = parser.parse_args()
 
     # run_dir = pathlib.Path.cwd()
     # load config file
-    with open('config_simulation.toml') as fileObj:
-        config = toml.load(fileObj)
+    with open("config_simulation.toml", "rb") as fileObj:
+        config = tomllib.load(fileObj)
     if args.environ == "laptop":
         process_dir = config['laptop_process_dir']
     elif args.environ == "cluster":
@@ -88,5 +84,6 @@ if __name__ == "__main__":
         scenario_report_overall.generate_report(schema_file_path,
                                                 other_json_files_path,
                                                 scenario_path,
-                                                number_of_replics)
+                                                number_of_replics,
+                                                args.statistic_type)
         print("Generated final statistics and report.")

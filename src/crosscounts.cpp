@@ -1,7 +1,7 @@
 /*
  * This file is part of "probitlcm" which is released under GPL v3.
  *
- * Copyright (c) 2024 Jesse Bowers <jessemb2@illinois.edu>.
+ * Copyright (c) 2024 Jesse Bowers <bowers.jesse+publications@gmail.com>.
  *
  * This program is FLO (free/libre/open) software: you can redistribute
  * it and/or modify it under the terms of the GNU General Public License

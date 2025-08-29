@@ -1,6 +1,6 @@
 # This file is part of "probitlcm" which is released under GPL v3.
 #
-# Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+# Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -155,6 +155,7 @@ def calculate_beta_and_delta_stats(scenario_path,
                                             scenario_path, replic_path, burnin,
                                             effects_list)
     # calculate avg_of_ae's
+    ## NOTE: these are only used for statistic_type mean
     delta_avg_of_ae_0, beta_avg_of_ae_0 = calc_delta_beta_avg_of_ae_subset(
         datagen_delta, avg_delta, datagen_beta, avg_beta, 0)
     delta_avg_of_ae_1, beta_avg_of_ae_1 = calc_delta_beta_avg_of_ae_subset(
@@ -195,6 +196,7 @@ def calculate_theta_statistics(scenario_path, scenario_datagen_params_path,
         # sum up values for each J and store them (so when we do the
         #     overall report, we don't have to know the dimensions of each
         #     theta_j_stat matrix to build each cube
+        # this is only used for statistic_type mean
         theta_j_stat_sum = np.sum(theta_j_stat)
         fname = f'stat_theta_j_{j:03}_sum.txt'
         report_helpers.save_single_value(theta_j_stat_sum, replic_path, fname)

@@ -1,6 +1,6 @@
 # This file is part of "probitlcm" which is released under GPL v3.
 #
-# Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+# Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
 #
 # This program is FLO (free/libre/open) software: you can redistribute
 # it and/or modify it under the terms of the GNU General Public License
@@ -17,17 +17,12 @@
 
 import argparse
 import pathlib
-
-import sys
-if sys.version_info[1] < 11:
-    import toml
-else:
-    import tomllib as toml
+import tomllib
 
 def find_convergence_failures(environ, sim_info_dir_name,
                               total_num_of_scenarios):
-    with open('config_simulation.toml') as fileObj:
-        config = toml.load(fileObj)
+    with open("config_simulation.toml", "rb") as fileObj:
+        config = tomllib.load(fileObj)
     if args.environ == "laptop":
         process_dir = config['laptop_process_dir']
     elif args.environ == "cluster":

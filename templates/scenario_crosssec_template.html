@@ -24,7 +24,7 @@ th {
 
 <p>Matrix of \(\text{MAE}(\widehat{\beta_{hj}}^{(1:R)}, \beta_{hj}) = \frac{1}{R} \sum_{r=1}^{R} \text{AE}(\widehat{\beta_{hj}}^{(r)}, \beta_{hj})\)</p>
 
-{{ results_dict["mae_beta"] }}
+{{ results_dict["mae_beta_html"] }}
 
 <p>Average of the entries of the above matrix: {{ results_dict["avg_of_mae_beta"] }}</p>
 
@@ -32,58 +32,56 @@ th {
 
 <p>Matrix of \(\frac{1}{R} \sum_{r=1}^{R} \left|\widehat{\delta_{hj}}^{(r)} - \delta_{hj}\right|\) (the entries of which have no clear convergence properties).</p>
 
-{{ results_dict["mae_delta"] }}
+{{ results_dict["mae_delta_html"] }}
 
 <p>Average of the entries of the above matrix: {{ results_dict["avg_of_mae_delta"] }}</p>
 
 <h3>Beta and delta percentages broken down into 0 and 1 matches</h3>
 
 <p>
-Average of average of AE for delta, subset 0: {{ beta_delta_subsets["avg_of_avg_of_ae_delta_0"] }}
+Average of average of AE for delta, subset 0: {{ results_dict["avg_mae_delta_0"] }}
 </p>
 
 <p>
-Average of average of AE for delta, subset 1: {{ beta_delta_subsets["avg_of_avg_of_ae_delta_1"] }}
+Average of average of AE for delta, subset 1: {{ results_dict["avg_mae_delta_1"] }}
 </p>
 
 <p>
-Average beta MAD for datagen delta equals 0: {{ beta_delta_subsets["avg_of_avg_of_ae_beta_0"] }}
+Average beta MAD for datagen delta equals 0: {{ results_dict["avg_mae_beta_0"] }}
 </p>
 
 <p>
-Average beta MAD for datagen delta equals 1: {{ beta_delta_subsets["avg_of_avg_of_ae_beta_1"] }}
+Average beta MAD for datagen delta equals 1: {{ results_dict["avg_mae_beta_1"] }}
 </p>
 
 
 <h3>Theta-related</h3>
 
-{{ results_dict_theta["avg_theta_stat"] }}
+{{ results_dict["avg_theta_stat_html"] }}
 
-<p>Average of the entries of the above matrix: {{ results_dict_theta["avg_of_avg_theta_stat"] }}</p>
+<p>Average of the entries of the above matrix: {{ results_dict["avg_of_avg_theta_stat"] }}</p>
 
 <h3>Lambda related</h3>
 
-{{ results_dict_lambda["mae_lambda"] }}
+{{ results_dict["mae_lambda_html"] }}
 
-<p>Average of the entries of the above matrix: {{ results_dict_lambda["avg_of_mae_lambda"] }}</p>
+<p>Average of the entries of the above matrix: {{ results_dict["avg_of_mae_lambda"] }}</p>
 
 <h3>Rmat-related</h3>
 
-{{ results_dict_Rmat["mae_Rmat"] }}
+{{ results_dict["mae_Rmat_html"] }}
 
-<p>Average of the entries of the above matrix: {{ results_dict_Rmat["avg_of_mae_Rmat"] }}</p>
+<p>Average of the entries of the above matrix: {{ results_dict["avg_of_mae_Rmat"] }}</p>
 
 <h3>Gammas-related</h3>
 
-{% for key, value in gamma_avg_of_mae_dict.items() %}
-<p>Gamma index: {{key}}</p>
-Statistic:
-
-{{value}}
-
+<ul>
+{% for item in results_dict["gamma_avg_stats"] %}
+<li>{{ item }}</li>
 {% endfor %}
+</ul>
 
-<p>Average of the entries of the above: {{ gamma_avg_of_avg_of_mae }}</p>
+<p>Average of the entries of the above: {{ results_dict["gamma_avg_of_avg_of_mae"] }}</p>
 
 <h3>Metric value</h3>
 

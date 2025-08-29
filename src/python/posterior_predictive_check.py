@@ -1,6 +1,6 @@
 # This file is part of "probitlcm" which is released under GPL v3.
 #
-# Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+# Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
 #
 # This program is FLO (free/libre/open) software: you can redistribute
 # it and/or modify it under the terms of the GNU General Public License
@@ -17,13 +17,7 @@
 
 from probitlcm import _core
 
-import argparse, json, pathlib
-
-import sys
-if sys.version_info[1] < 11:
-    import toml
-else:
-    import tomllib as toml
+import argparse, json, pathlib, tomllib
 
 import numpy as np
 from scipy.stats import mannwhitneyu
@@ -45,10 +39,6 @@ def run_stuff(dataset_dir, data_analysis_path, N_files, chainnum):
     # do work
     N = Y_obs.shape[0]
     J = Y_obs.shape[1]
-    ## dimensions
-    # N = 3960
-    # J = 17
-    # N_files = 6
     ## program params
     size_of_chunk = 100
     size_of_chunk_zb = size_of_chunk - 1
@@ -119,8 +109,8 @@ if __name__ == "__main__":
     # same format for config file    
     run_dir = pathlib.Path.cwd()
     # load config file
-    with open('config_data_analysis.toml') as fileObj:
-        config = toml.load(fileObj)
+    with open("config_data_analysis.toml", "rb") as fileObj:
+        config = tomllib.load(fileObj)
     if args.environ == "laptop":
         process_dir = config['laptop_process_dir']
     elif args.environ == "cluster":

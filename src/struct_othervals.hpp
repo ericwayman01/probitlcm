@@ -1,7 +1,7 @@
 /*
  * This file is part of "probitlcm" which is released under GPL v3.
  *
- * Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+ * Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
  *
  * This program is FLO (free/libre/open) software: you can redistribute
  * it and/or modify it under the terms of the GNU General Public License
@@ -37,8 +37,8 @@ struct OtherVals {
     arma::uword chain_length_after_burnin;
     arma::uword total_chain_length;
     // dimensions and levels related
-    arma::Col<arma::uword> M_j_s;
-    arma::Col<arma::uword> L_k_s;
+    arma::uvec M_j_s;
+    arma::uvec L_k_s;
     std::map<std::string, arma::uword> dimensions;
     arma::uword order;
     arma::uvec pos_to_remove; // in use iff order < K

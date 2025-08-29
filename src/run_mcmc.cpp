@@ -1,7 +1,7 @@
 /*
  * This file is part of "probitlcm" which is released under GPL v3.
  *
- * Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+ * Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
  *
  * This program is FLO (free/libre/open) software: you can redistribute
  * it and/or modify it under the terms of the GNU General Public License
@@ -40,6 +40,7 @@
 #include <string>
 #include <iostream>
 #include <cmath> // for std::pow
+#include <chrono>
 
 arma::field<arma::vec> compute_V_quantities(const arma::mat& Sigma) {
     arma::field<arma::vec> diagonals(2);
@@ -475,6 +476,7 @@ void run_mcmc(DatagenVals & datagenvals,
     eye_ppc.eye();
     // end setup for posterior predictive check code
     // execute sampling
+    auto t1 = std::chrono::high_resolution_clock::now();
     while (draw_number < othervals.total_chain_length) {
         // set "previous" values for large matrices
         draws.Ymat_star_previous = draws.Ymat_star_current;
@@ -576,6 +578,13 @@ void run_mcmc(DatagenVals & datagenvals,
         // perform logging and increment draw number
         log_file << "finished loop " << std::to_string(draw_number)
                  << std::endl;
+        if (draw_number == 1000) {
+            auto t2 = std::chrono::high_resolution_clock::now();
+            std::cout << "It took "
+                      << std::chrono::duration_cast<std::chrono::seconds>(t2 - t1).count()
+                      << " seconds to perform 1000 draws."
+                      << std::endl;
+        }
         draw_number += 1;
     }
     std::cout << "Chain done." << std::endl;
@@ -664,8 +673,8 @@ void run_replication(std::string jsonfilename_stem,
                               datagenvals.Ymat, datagenvals.Xmat,
                               seed_value, datagenvals, true);
     std::cout << "run_mcmc started" << std::endl;
-    run_mcmc(datagenvals, othervals, draws, datagenvals.Ymat, datagenvals.Xmat,
-             true);
+    run_mcmc(datagenvals, othervals, draws, datagenvals.Ymat,
+             datagenvals.Xmat, true);
     write_mcmc_output(draws, datagenvals, othervals, true,
                       hyperparam_tuning, scenario_number_zb);
 }

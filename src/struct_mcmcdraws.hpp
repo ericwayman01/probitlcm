@@ -1,7 +1,7 @@
 /*
  * This file is part of "probitlcm" which is released under GPL v3.
  *
- * Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+ * Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
  *
  * This program is FLO (free/libre/open) software: you can redistribute
  * it and/or modify it under the terms of the GNU General Public License
@@ -28,15 +28,13 @@ struct MCMCDraws {
     arma::mat Ymat_star_current;
     arma::mat Ymat_star_previous;
     arma::cube beta;
-    arma::Cube<arma::uword> delta;
+    arma::ucube delta;
     arma::field<arma::mat> kappa;
-    arma::Mat<arma::uword> alpha_current;
-    arma::Mat<arma::uword> alpha_previous;
+    arma::umat alpha_current;
+    arma::umat alpha_previous;
     arma::mat alpha_star_current;
     arma::mat alpha_star_previous;
     arma::cube Rmat;
-    arma::cube lambda;
-    arma::cube lambda_expa;
     arma::vec omega;
     // expanded params
     arma::field<arma::mat> gamma;
@@ -44,6 +42,8 @@ struct MCMCDraws {
     arma::mat alpha_star_expa_current;
     arma::mat alpha_star_expa_previous;
     arma::cube Sigma;
+    arma::cube lambda;
+    arma::cube lambda_expa;
     // functions of derived parameters
     arma::field<arma::mat> theta_j_mats_sums;
     arma::umat class_counts;

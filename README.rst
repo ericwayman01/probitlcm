@@ -4,14 +4,14 @@ probitlcm
 
 The ``probitlcm`` package implements the model described in the `manuscript <http://arxiv.org/abs/2408.13143>`_
 
-  Eric Alan Wayman, Steven Andrew Culpepper, Jeff Douglas, and Jesse Bowers. "A Restricted Latent Class Model with Polytomous Ordinal Correlated Attributes and Respondent-Level Covariates." arXiv preprint arXiv:2408.13143, 2024.
+  Eric Alan Wayman, Steven Andrew Culpepper, Jeff Douglas, and Jesse Bowers. "A restricted latent class model with polytomous attributes and respondent-level covariates." arXiv preprint arXiv:2408.13143, 2024.
 
 If you make use of this software, please cite the above.
 
 Requirements
 ============
 
-- Python (a version greater than or equal to 3.9), as well as the Python development headers (package ``python3-dev`` on Ubuntu)
+- Python (a version greater than or equal to 3.11), as well as the Python development headers (package ``python3-dev`` on Ubuntu)
 - The Ninja and CMake build systems (packages ``ninja`` and ``cmake`` on Ubuntu)
 - LAPACK and BLAS (packages ``libblas-dev`` and ``liblapack-dev`` on Ubuntu)
 

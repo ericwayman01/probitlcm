@@ -4,7 +4,7 @@ Welcome to probitlcm's documentation!
 
 The ``probitlcm`` package implements the model described in the `manuscript <http://arxiv.org/abs/2408.13143>`_
 
-  Eric Alan Wayman, Steven Andrew Culpepper, Jeff Douglas, and Jesse Bowers. "A Restricted Latent Class Model with Polytomous Ordinal Correlated Attributes and Respondent-Level Covariates." arXiv preprint arXiv:2408.13143, 2024.
+  Eric Alan Wayman, Steven Andrew Culpepper, Jeff Douglas, and Jesse Bowers. "A restricted latent class model with polytomous attributes and respondent-level covariates." arXiv preprint arXiv:2408.13143, 2024.
 
 If you make use of this software, please cite the above.
 
@@ -208,13 +208,14 @@ Some example simulation run commands:
 ::
    
    python3.X -m probitlcm.scenario_launch --environ laptop --sim_info_dir_name sim_for_manuscript --scenarionumber 1
-   python3.X -m probitlcm.scenario_replics_postprocess --environ laptop --sim_info_dir_name sim_for_manuscript --scenarionumber 1
+   python3.X -m probitlcm.scenario_replics_postprocess --environ laptop --sim_info_dir_name sim_for_manuscript --scenarionumber 1 --statistic_type mean
 
 Once all scenarios for a simulation have finished running, a report on all scenarios can be built using the ``build_report_all_scenarios`` module. The command is
 
 ::
 
-   python3.X -m probitlcm.build_report_all_scenarios --environ laptop --sim_info_dir_name sim_for_manuscript --total_num_of_scenarios 45
+   python3.X -m probitlcm.build_report_all_scenarios --environ laptop --sim_info_dir_name sim_for_manuscript --total_num_of_scenarios 45 --statistic_type median
+
 
 Data analysis
 =============

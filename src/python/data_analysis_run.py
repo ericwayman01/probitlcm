@@ -1,6 +1,6 @@
 # This file is part of "probitlcm" which is released under GPL v3.
 #
-# Copyright (c) 2022-2024 Eric Alan Wayman <ewayman2@illinois.edu>.
+# Copyright (c) 2022-2025 Eric Alan Wayman <ericwaymanpublications@mathworks.org>.
 #
 # This program is FLO (free/libre/open) software: you can redistribute
 # it and/or modify it under the terms of the GNU General Public License
@@ -16,20 +16,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## standard library
-import pathlib
 import argparse
+import json
+import pathlib
 import subprocess
 import shutil
 import time # for data_analysis_run_cluster in environ cluster
-import json
+import tomllib
 
-## other modules
-import sys
-if sys.version_info[1] < 11:
-    import toml
-else:
-    import tomllib as toml
-
+## other
 import numpy as np
 
 ## my modules
@@ -43,8 +38,8 @@ def data_analysis_setup(environ, dataset, setup_num):
     # same format for config file    
     run_dir = pathlib.Path.cwd()
     # load config file
-    with open('config_data_analysis.toml') as fileObj:
-        config = toml.load(fileObj)
+    with open("config_data_analysis.toml", "rb") as fileObj:
+        config = tomllib.load(fileObj)
     if environ == "laptop":
         process_dir = config['laptop_process_dir']
     elif environ == "cluster":

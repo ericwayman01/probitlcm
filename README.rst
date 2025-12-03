@@ -2,9 +2,9 @@
 probitlcm
 =========
 
-The ``probitlcm`` package implements the model described in the `manuscript <http://arxiv.org/abs/2408.13143>`_
+The ``probitlcm`` package implements the model described in the `manuscript <https://doi.org/10.1007/s41237-025-00271-8>`_
 
-  Eric Alan Wayman, Steven Andrew Culpepper, Jeff Douglas, and Jesse Bowers. "A restricted latent class model with polytomous attributes and respondent-level covariates." arXiv preprint arXiv:2408.13143, 2024.
+  Eric Alan Wayman, Steven Andrew Culpepper, Jeff Douglas, and Jesse Bowers. "A restricted latent class model with polytomous attributes and respondent-level covariates." *Behaviormetrika*, 2025.
 
 If you make use of this software, please cite the above.
 
